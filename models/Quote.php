@@ -26,8 +26,8 @@
         {
             // Create query
             $query = 'SELECT
-                    c.name as category_name,
-                    a.name as author_name,
+                    c.category as category_name,
+                    a.author as author_name,
                     q.id,
                     q.category_id,
                     q.author_id,
@@ -35,10 +35,11 @@
                 FROM
                     ' . $this->table . ' q
                 LEFT JOIN
-                    categories c ON q.category_id = c.id,
+                    categories c ON q.category_id = c.id
+                LEFT JOIN
                     authors a ON q.author_id = a.id
                 ORDER BY
-                    a.name ASC';
+                    a.author ASC';
 
             // Prepare Statement
             $stmt = $this->conn->prepare($query);
