@@ -7,7 +7,6 @@
 
     echo '<pre>';
     echo '<br>';
-    echo $_ENV['NAME'] . "\n";
     print_r($_SERVER);
     echo '</pre>';
 
