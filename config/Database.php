@@ -1,8 +1,8 @@
 <?php
     class Database {
-        private $host = "localhost";
-        private $port = '5432';
-        private $db_name = 'quotesdb';
+        private $host;
+        private $port;
+        private $db_name;
         private $username;
         private $password;
         private $conn;
@@ -10,6 +10,9 @@
         public function __construct() {
             $this->username = $_ENV['USER'];
             $this->password = $_ENV['PASS'];
+            $this->db_name = $_ENV['DB_NAME'];
+            $this->host = $_ENV['HOST'];
+            $this->port = $_ENV['PORT'];
         }
 
         public function connect() {
