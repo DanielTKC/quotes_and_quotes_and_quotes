@@ -8,8 +8,8 @@
         private $conn;
 
         public function __construct() {
-            $this->username = $_ENV['USER'];
-            $this->password = $_ENV['PASS'];
+            $this->username = $_ENV['DB_USER'];
+            $this->password = $_ENV['DB_PASS'];
             $this->db_name = $_ENV['DB_NAME'];
             $this->host = $_ENV['HOST'];
             $this->port = $_ENV['PORT'];
