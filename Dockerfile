@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www/html
 
-COPY . var/www/html/
+COPY . /var/www/html/
 
 RUN docker-php-ext-install pdo pdo_pgsql
 
