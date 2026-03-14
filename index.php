@@ -5,9 +5,17 @@
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->safeLoad();
 
-    echo '<pre>';
-    echo '<br>';
-    print_r($_SERVER);
-    echo '</pre>';
+    require_once('config/Database.php');
 
-    phpinfo();
+    $db = new Database();
+    $conn = $db->connect();
+
+    if ($conn) {
+        $stmt = $conn->prepare('SELECT * FROM quotes WHERE id = :id');
+        $stmt->execute(['id' => 1]);
+        $quote = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        echo '<pre>';
+        print_r($quote);
+        echo '</pre>';
+    }
