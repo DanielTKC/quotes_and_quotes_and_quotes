@@ -1,11 +1,5 @@
 <?php
-    declare(strict_types = 1);
-    require_once('vendor/autoload.php');
-
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->safeLoad();
-
-    require_once('config/Database.php');
+    require_once('config/bootstrap.php');
 
     $db = new Database();
     $conn = $db->connect();
