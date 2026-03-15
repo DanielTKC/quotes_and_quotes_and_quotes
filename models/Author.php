@@ -43,8 +43,8 @@
                 FROM
                     ' . $this->table . '
                 WHERE
-                id = ?
-                LIMIT 0,1';
+                    id = ?
+                LIMIT 1';
 
             $stmt = $this->conn->prepare($query);
 
