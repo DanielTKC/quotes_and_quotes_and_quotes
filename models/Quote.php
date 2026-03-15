@@ -13,7 +13,7 @@
         // Quote Properties
         public $id;
         public $category_id;
-        public $category_name;
+        public $category;
         public $author_id;
         public $author;
         public $quote;
