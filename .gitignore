@@ -35,7 +35,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
+.postman
+.postman*
+postman/
+postman*
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
