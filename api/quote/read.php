@@ -35,7 +35,7 @@
             );
 
             // push to data
-            array_push($quotes_arr['data'], $quote_item);
+            $quotes_arr['data'][] = $quote_item;
         }
 
         // Turn to json
