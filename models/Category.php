@@ -20,11 +20,11 @@
         public function read(){
             $query = 'SELECT
                     id,
-                    author
+                    category
                 FROM
                     '. $this->table .'
                 ORDER BY
-                author ASC';
+                category ASC';
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
