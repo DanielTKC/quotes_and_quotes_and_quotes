@@ -22,7 +22,6 @@
     // Check if any quotes
     if ($num > 0) {
         $quotes_arr = array();
-        $quotes_arr['data'] = array();
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
@@ -35,11 +34,9 @@
                 'category' => $category,
             );
 
-            // push to data
-            $quotes_arr['data'][] = $quote_item;
+            $quotes_arr[] = $quote_item;
         }
 
-        // Turn to json
         echo json_encode($quotes_arr);
     } else {
         echo json_encode(
