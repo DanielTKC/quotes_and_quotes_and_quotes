@@ -26,8 +26,8 @@
         {
             // Create query
             $query = 'SELECT
-                    c.category as category_name,
-                    a.author as author_name,
+                    c.category,
+                    a.author,
                     q.id,
                     q.category_id,
                     q.author_id,
