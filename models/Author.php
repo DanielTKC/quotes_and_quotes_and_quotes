@@ -57,4 +57,24 @@
             $this->id = $row['id'];
             $this->author = $row['author'];
         }
+
+        public function create()
+        {
+            $query = 'INSERT INTO ' . $this->table . '
+                (author)
+                VALUES (:author)';
+
+            $stmt = $this->conn->prepare($query);
+            $this->author = htmlspecialchars(strip_tags($this->author));
+
+            // bind data
+            $stmt->bindParam(':author', $this->author);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
     }
