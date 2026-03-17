@@ -1,11 +1,39 @@
 <?php
+    use models\Category;
+
+    require_once '../../config/bootstrap.php';
+    require_once '../../models/Category.php';
+
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    $method = $_SERVER['REQUEST_METHOD'];
 
+    $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method === 'OPTIONS') {
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
         header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With');
         exit();
+    }
+
+    // DB OBJECT & CONNECT
+    $database = new Database();
+    $db = $database->connect();
+
+    // Instantiate category object
+    $category = new Category($db);
+
+    switch ($method) {
+        case 'GET':
+            if (isset($_GET['id'])) {
+                require 'read_single.php';
+            } else {
+                require 'read.php';
+            }
+            break;
+        case 'POST':
+            require 'create.php';
+            break;
+        default:
+            echo json_encode(['message' => 'Method Not Allowed']);
+            break;
     }
