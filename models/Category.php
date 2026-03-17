@@ -56,5 +56,25 @@
             $this->category = $row['category'];
         }
 
+        public function create()
+        {
+            $query = 'INSERT INTO ' . $this->table . '
+                (category)
+                VALUES (:category)';
+
+            $stmt = $this->conn->prepare($query);
+            $this->category = htmlspecialchars(strip_tags($this->category));
+
+            // bind data
+            $stmt->bindParam(':category', $this->category);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
 
     }
