@@ -2,6 +2,8 @@
 
     namespace models;
 
+    use PDO;
+
     class Category
     {
         private $conn;
@@ -30,5 +32,29 @@
             $stmt->execute();
             return $stmt;
         }
+
+        public function read_single()
+        {
+            $query = 'SELECT
+                            id,
+                            category
+                FROM
+                    ' . $this->table . '
+                WHERE
+                    id = ?
+                LIMIT 1';
+
+            $stmt = $this->conn->prepare($query);
+
+            //Bind ID
+            $stmt->bindParam(1, $this->id);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Set Property
+            $this->id = $row['id'];
+            $this->category = $row['category'];
+        }
+
 
     }
