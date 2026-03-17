@@ -1,7 +1,7 @@
 <?php
-    use models\Author;
+    use models\Category;
     require_once '../../config/bootstrap.php';
-    require_once '../../models/Author.php';
+    require_once '../../models/Category.php';
 
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json");
@@ -10,27 +10,27 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instantiate quote object
-    $author = new Author($db);
+    // Instantiate category object
+    $category = new Category($db);
 
-    // Quote query
-    $result = $author->read();
+    // category query
+    $result = $category->read();
     $num = $result->rowCount();
 
     if ($num > 0) {
-        $authors_arr = array();
+        $categories_arr= array();
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
-            $author_item = array(
+            $category_item = array(
                 'id' => $id,
-                'author' => $author,
+                'category' => $category,
             );
 
-            $authors_arr[] = $author_item;
+            $categories_arr[] = $category_item;
         }
 
-        echo json_encode($authors_arr);
+        echo json_encode($categories_arr);
     } else {
         echo json_encode(
             array("message" => "No Quotes found.")
