@@ -14,4 +14,4 @@
         'category' => $category->category,
     );
 
-    echo json_encode($category_arr);
+    print_r(json_encode($category_arr));
