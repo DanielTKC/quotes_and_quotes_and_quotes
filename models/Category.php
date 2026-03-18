@@ -76,5 +76,27 @@
             return false;
         }
 
+        // Update
+        public function update()
+        {
+            $query = 'UPDATE ' . $this->table . '
+                SET category = :category 
+                WHERE id = :id';
+
+            $stmt = $this->conn->prepare($query);
+            $this->category = htmlspecialchars(strip_tags($this->category));
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            // bind data
+            $stmt->bindParam(':category', $this->category);
+            $stmt->bindParam(':id', $this->id);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
 
     }
