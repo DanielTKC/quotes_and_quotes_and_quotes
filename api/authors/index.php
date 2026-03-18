@@ -36,6 +36,9 @@
         case 'PUT':
             require 'update.php';
             break;
+        case 'DELETE':
+            require 'delete.php';
+            break;
         default:
             echo json_encode(['message' => 'Method Not Allowed']);
             break;
