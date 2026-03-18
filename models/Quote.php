@@ -96,7 +96,7 @@
             $stmt->bindParam(':author_id', $this->author_id);
             $stmt->bindParam(':category_id', $this->category_id);
 
-            if($stmt->execute()) {
+            if ($stmt->execute()) {
                 return true;
             }
 
@@ -118,19 +118,36 @@
             $this->id = htmlspecialchars(strip_tags($this->id));
 
 
-
             // bind data
             $stmt->bindParam(':quote', $this->quote);
             $stmt->bindParam(':author_id', $this->author_id);
             $stmt->bindParam(':category_id', $this->category_id);
             $stmt->bindParam(':id', $this->id);
 
-            if($stmt->execute()) {
+            if ($stmt->execute()) {
                 return true;
             }
 
             printf("Error: %s.\n", $stmt->error);
             return false;
+        }
+
+        // Delete
+        public function delete()
+        {
+            // Query
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+            $stmt = $this->conn->prepare($query);
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(':id', $this->id);
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+
         }
 
 
