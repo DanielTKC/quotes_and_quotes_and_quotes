@@ -15,16 +15,18 @@
         public $category;
 
         // Database conn
-        public function __construct($db) {
+        public function __construct($db)
+        {
             $this->conn = $db;
         }
 
-        public function read(){
+        public function read()
+        {
             $query = 'SELECT
                     id,
                     category
                 FROM
-                    '. $this->table .'
+                    ' . $this->table . '
                 ORDER BY
                 category ASC';
 
@@ -68,7 +70,7 @@
             // bind data
             $stmt->bindParam(':category', $this->category);
 
-            if($stmt->execute()) {
+            if ($stmt->execute()) {
                 return true;
             }
 
@@ -90,10 +92,23 @@
             $stmt->bindParam(':category', $this->category);
             $stmt->bindParam(':id', $this->id);
 
-            if($stmt->execute()) {
+            if ($stmt->execute()) {
                 return true;
             }
 
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
+        public function delete()
+        {
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+            $stmt = $this->conn->prepare($query);
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(':id', $this->id);
+            if ($stmt->execute()) {
+                return true;
+            }
             printf("Error: %s.\n", $stmt->error);
             return false;
         }
