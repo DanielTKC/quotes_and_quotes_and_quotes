@@ -23,7 +23,7 @@
         echo json_encode($authors_arr);
     } else {
         echo json_encode(
-            array("message" => "No Quotes found.")
+            array("message" => "No Authors found.")
         );
     }
 
