@@ -22,6 +22,6 @@
         echo json_encode($categories_arr);
     } else {
         echo json_encode(
-            array("message" => "No Categories found.")
+            array("message" => "category_id Not Found")
         );
     }

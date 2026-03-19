@@ -26,6 +26,6 @@
         echo json_encode($quotes_arr);
     } else {
         echo json_encode(
-            array("message" => "No Quotes found.")
+            array("message" => "No Quotes Found")
         );
     }
