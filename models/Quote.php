@@ -129,10 +129,9 @@
             $stmt->bindParam(':category_id', $this->category_id);
             $stmt->bindParam(':id', $this->id);
 
-            if ($stmt->execute()) {
+            if ($stmt->execute() && $stmt->rowCount() > 0) {
                 return true;
             }
-
             printf("Error: %s.\n", $stmt->error);
             return false;
         }
