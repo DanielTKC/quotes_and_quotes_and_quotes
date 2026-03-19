@@ -4,6 +4,8 @@
      * @var PDO $db
      */
 
+    require_once '../../helpers.php';
+
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
