@@ -79,7 +79,6 @@
                 return true;
             }
 
-            printf("Error: %s.\n", $stmt->error);
             return false;
         }
 
@@ -102,7 +101,6 @@
                 return true;
             }
 
-            printf("Error: %s.\n", $stmt->error);
             return false;
         }
         public function delete()
@@ -114,7 +112,6 @@
             if ($stmt->execute()) {
                 return true;
             }
-            printf("Error: %s.\n", $stmt->error);
             return false;
         }
     }

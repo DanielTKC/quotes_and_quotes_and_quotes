@@ -105,7 +105,6 @@
                 return true;
             }
 
-            printf("Error: %s.\n", $stmt->error);
             return false;
         }
 
@@ -132,7 +131,6 @@
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 return true;
             }
-            printf("Error: %s.\n", $stmt->error);
             return false;
         }
 
@@ -149,7 +147,6 @@
                 return true;
             }
 
-            printf("Error: %s.\n", $stmt->error);
             return false;
 
         }
