@@ -97,6 +97,7 @@
             $stmt->bindParam(':category_id', $this->category_id);
 
             if ($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
                 return true;
             }
 

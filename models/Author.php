@@ -71,6 +71,7 @@
             $stmt->bindParam(':author', $this->author);
 
             if($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
                 return true;
             }
 
