@@ -5,6 +5,11 @@
 
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
+
+    if (!isset($data->author)) {
+        echo json_encode(array('message' => 'Missing Required Parameters'));
+        return;
+    }
     // Set ID to update
     $author->id = $data->{'id'};
     $author->author = $data->author;
@@ -12,7 +17,10 @@
     // Update post
     if ($author->update()) {
         echo json_encode(
-            array('message' => 'Author Updated')
+            array(
+                'id' => $author->id,
+                'author' => $author->author,
+            )
         );
     } else {
         echo json_encode(
