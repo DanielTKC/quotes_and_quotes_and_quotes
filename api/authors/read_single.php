@@ -7,8 +7,11 @@
 
     $author->id = $_GET['id'] ?? die();
 
-    // Get author
-    $author->read_single();
+    // Get author or throw error message
+    if (!$author->read_single()) {
+        echo json_encode(['message' => 'author_id Not Found']);
+        return;
+    }
 
     // create array
     $author_arr = array(

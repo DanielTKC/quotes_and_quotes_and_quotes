@@ -72,10 +72,14 @@
             $stmt->bindParam(1, $this->id);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$row) {
+                return false;
+            }
             $this->id = $row['id'];
             $this->quote = $row['quote'];
             $this->author = $row['author'];
             $this->category = $row['category'];
+            return true;
         }
 
         // Create Post

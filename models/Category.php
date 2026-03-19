@@ -52,10 +52,14 @@
             $stmt->bindParam(1, $this->id);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$row) {
+                return false;
+            }
 
             // Set Property
             $this->id = $row['id'];
             $this->category = $row['category'];
+            return true;
         }
 
         public function create()
