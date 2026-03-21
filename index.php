@@ -1,2 +1,2 @@
 <?php
-    echo '<pre>Directory of api is in /api/</pre>';
+    echo '<pre><h1>Midterm REST API</h1></pre>';
