@@ -41,12 +41,29 @@
                     categories c ON q.category_id = c.id
                 LEFT JOIN
                     authors a ON q.author_id = a.id
-                ORDER BY
-                    a.author ASC';
+                /*
+                This is the coolest trick I learned. You can always append AND without checking if it is the first
+                condition. https://www.youtube.com/watch?v=RjEEEUHvaD4
+                */
+                WHERE 1=1';
+            // We need to check if author id or category id was set at the end point. If so, add it to params
+            // and append it to the query
+            $params = [];
 
-            // Prepare Statement
+            if ($this->author_id) {
+                $query .= ' AND q.author_id = ?';
+                $params[] = $this->author_id;
+            }
+
+            if ($this->category_id) {
+                $query .= ' AND q.category_id = ?';
+                $params[] = $this->category_id;
+            }
+
+            $query .= ' ORDER BY a.author ASC';
+            // Prepare the statement
             $stmt = $this->conn->prepare($query);
-            $stmt->execute();
+            $stmt->execute($params);
             return $stmt;
         }
 

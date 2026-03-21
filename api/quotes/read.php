@@ -2,6 +2,9 @@
     /**
      * @var \models\Quote $quote
      */
+    // we have to check if these are set, and if they are pass them to the model to be added to the query.
+    $quote->author_id = $_GET['author_id'] ?? null;
+    $quote->category_id = $_GET['category_id'] ?? null;
 
     // Quote query
     $result = $quote->read();
